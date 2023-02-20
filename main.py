@@ -2,6 +2,8 @@
 from os import listdir
 from os.path import isfile, join
 import os
+from PIL import Image
+
 
 photos = 0
 kopialubnie = []
@@ -23,11 +25,19 @@ for x in wszystkieZdj:
 
             dobryPathX = os.path.normpath(zjebanyPathX)
             dobryPathY = os.path.normpath(zjebanyPathY)
+            
+            imgX = Image.open(dobryPathX)
+            imgY = Image.open(dobryPathY)
             try:
                 if os.path.getsize(rf"{dobryPathX}") == os.path.getsize(rf"{dobryPathY}"):
                     os.remove(fr"{path}\{x}")
                     kopie += 1
                     print(f"Usunięto {x}")
+                elif (imgX.width+imgX.height) == (imgY.width+imgY.height):
+                    os.remove(fr"{path}\{x}")
+                    kopie += 1
+                    print(f"Usunięto {x}")
+                #elif condition:
                 else:
                     pass
             except FileNotFoundError:
