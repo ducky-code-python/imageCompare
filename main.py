@@ -29,13 +29,7 @@ for x in wszystkieZdj:
                 imgX = Image.open(dobryPathX)
                 imgY = Image.open(dobryPathY)
             
-                if os.path.getsize(rf"{dobryPathX}") == os.path.getsize(rf"{dobryPathY}"):
-                    imgX.close()
-                    imgY.close()
-                    os.remove(fr"{path}/{x}")
-                    kopie += 1
-                    print(f"Usunięto {x}")
-                elif (imgX.width+imgX.height) == (imgY.width+imgY.height):
+                if os.path.getsize(rf"{dobryPathX}") == os.path.getsize(rf"{dobryPathY}") and (imgX.width+imgX.height) == (imgY.width+imgY.height):
                     imgX.close()
                     imgY.close()
                     os.remove(fr"{path}/{x}")
