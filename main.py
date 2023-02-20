@@ -20,21 +20,25 @@ for x in wszystkieZdj:
         if x == y:
             pass
         else:
-            zjebanyPathX = rf"{path}\\{x}"
-            zjebanyPathY = rf"{path}\\{y}"
+            zjebanyPathX = rf"{path}/{x}"
+            zjebanyPathY = rf"{path}/{y}"
 
             dobryPathX = os.path.normpath(zjebanyPathX)
             dobryPathY = os.path.normpath(zjebanyPathY)
+            try: 
+                imgX = Image.open(dobryPathX)
+                imgY = Image.open(dobryPathY)
             
-            imgX = Image.open(dobryPathX)
-            imgY = Image.open(dobryPathY)
-            try:
                 if os.path.getsize(rf"{dobryPathX}") == os.path.getsize(rf"{dobryPathY}"):
-                    os.remove(fr"{path}\{x}")
+                    imgX.close()
+                    imgY.close()
+                    os.remove(fr"{path}/{x}")
                     kopie += 1
                     print(f"Usunięto {x}")
                 elif (imgX.width+imgX.height) == (imgY.width+imgY.height):
-                    os.remove(fr"{path}\{x}")
+                    imgX.close()
+                    imgY.close()
+                    os.remove(fr"{path}/{x}")
                     kopie += 1
                     print(f"Usunięto {x}")
                 #elif condition:
