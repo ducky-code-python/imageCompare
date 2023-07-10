@@ -8,7 +8,7 @@ from PIL import Image
 photos = 0
 kopialubnie = []
 usuniete = 0
-path = input("Podaj sciezke do folderu ze zdjeciami:")
+path = input("Path to folder with photos:")
 os.path.normpath(path)
 
 kopie = 0
